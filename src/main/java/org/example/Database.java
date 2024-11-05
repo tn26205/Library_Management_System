@@ -8,21 +8,30 @@ public class Database {
    private ArrayList<Book>books = new ArrayList<Book>();
    private  ArrayList<String>booknames = new ArrayList<String>();
 
-    private File usersfile = new File(Main.class.getClassLoader().getResource("Users").getFile());
-    private File booksfile = new File(Main.class.getClassLoader().getResource("Books").getFile());
-
+    private File usersfile = new File("C:\\Users\\Admin\\IdeaProjects\\LibraryManagement\\src\\main\\resources\\Users");
+    private File booksfile = new File("C:\\Users\\Admin\\IdeaProjects\\LibraryManagement\\src\\main\\resources\\Books");
+    private File folder = new File("C:\\Users\\Admin\\IdeaProjects\\LibraryManagement\\src\\main\\resources");
     public Database() {
-        if(!usersfile.exists()){
-            usersfile.mkdir();
+        if(!folder.exists()){
+            folder.mkdir();
         }
-        if(!booksfile.exists()){
-            booksfile.mkdir();
+        if(usersfile.exists()){
+            try{
+                usersfile.createNewFile();
+            }catch(Exception e){}
         }
+        if(booksfile.exists()){
+            try{
+                booksfile.createNewFile();
+            }catch(Exception e){}
+        }
+        getUsers();
     }
 
     public void AddUser(User s) {
         users.add(s);
         usernames.add(s.getName());
+        saveUsers();
     }
     public int login(String phonenumber, String email){
         int n = -1 ;
@@ -40,6 +49,7 @@ public class Database {
     public void AddBook(Book book) {
         books.add(book);
         booknames.add(book.getName());
+
     }
     private void getUsers() {
         String text1 = "";
@@ -59,10 +69,12 @@ public class Database {
                 String [] a2 = s.split("<N/>");
                 if(a2[3].matches("Admin")) {
                     User user = new Admin(a2[0], a2[1],a2[2]);
-                    AddUser(user);
+                    users.add(user);
+                    usernames.add(user.getName());
                 }else{
                     User user = new NormalUser(a2[0], a2[1],a2[2]);
-                   AddUser(user);
+                    users.add(user);
+                    usernames.add(user.getName());
                 }
             }
         }
@@ -76,8 +88,9 @@ public class Database {
             PrintWriter pw = new PrintWriter(usersfile);
             pw.println(text1);
             pw.close();
+
         }catch (Exception e){
-            System.out.println(e.toString());
+            System.err.println(e.toString());
         }
     }
 }
