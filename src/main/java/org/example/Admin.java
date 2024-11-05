@@ -43,6 +43,6 @@ public class Admin extends User {
     }
     @Override
     public String toString() {
-        return name+"<N/>" +email+"<N/>"+phoneNumber+"N/>"+"Admin";
+        return name+"<N/>"+email+"<N/>"+phoneNumber+"<N/>"+"Admin";
     }
 }

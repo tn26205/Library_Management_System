@@ -76,6 +76,11 @@ public class Book {
     public void setBrwcopies(int brwcopies) {
         this.brwcopies = brwcopies;
     }
-
+    public String toString2() {
+         return name + "<N/>"+ author + "<N/n"+  publisher+ "<N/n>"+ adress +
+                "<N/n>"+ String.valueOf(qty) +
+                "<N/n>" + String.valueOf(price)+
+                "<N/n>" + String.valueOf(brwcopies);
+    }
 
 }
