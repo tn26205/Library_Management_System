@@ -1,5 +1,7 @@
-package org.example;
-import javafx.application.Application;
+package LibraryManagement;
+
+
+
 import java.util.Scanner;
 
 public class Main {
@@ -14,18 +16,19 @@ public class Main {
             System.out.println("0.Exit\n1.Login\n2.New User");
             s = new Scanner(System.in);
             num = s.nextInt();
+            s.nextLine();
             switch (num) {
                 case 1:
-                    login();
+                    login();break;
                 case 2:
-                    newuser();
+                    newuser();break;
             }
       //  } while (num != 0);
     }
 
     private static void newuser() {
         System.out.println("Enter name:");
-        String name = s.next();
+        String name = s.nextLine();
         System.out.println("Enter phone number:");
         String phonenumber = s.next();
         System.out.println("Enter email :");

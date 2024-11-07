@@ -1,4 +1,4 @@
-package org.example;
+package LibraryManagement;
 import java.io.*;
 import java.util.ArrayList;
 
@@ -15,17 +15,18 @@ public class Database {
         if(!folder.exists()){
             folder.mkdir();
         }
-        if(usersfile.exists()){
+        if(!usersfile.exists()){
             try{
                 usersfile.createNewFile();
             }catch(Exception e){}
         }
-        if(booksfile.exists()){
+        if(!booksfile.exists()){
             try{
                 booksfile.createNewFile();
             }catch(Exception e){}
         }
         getUsers();
+        getBooks();
     }
 
     public void AddUser(User s) {
@@ -38,7 +39,6 @@ public class Database {
         for(User s : users){
             if (s.getPhoneNumber().matches(phonenumber)&&s.getEmail().matches(email)){
                 n = users.indexOf(s);
-                System.out.println("Hellooooo!");
                 break;
             }
         }
@@ -50,7 +50,7 @@ public class Database {
     public void AddBook(Book book) {
         books.add(book);
         booknames.add(book.getName());
-
+        saveBooks();
     }
     private void getUsers() {
         String text1 = "";
@@ -68,11 +68,11 @@ public class Database {
             String[] a1 = text1.split("<NewUser/>");
             for(String s : a1) {
                 String[] a2 = s.split("<N/>");
-                if(a2[2].matches("Admin")) {
+                if(a2[3].matches("Admin")) {
                     User user = new Admin(a2[0], a2[1],a2[2]);
                     users.add(user);
                     usernames.add(user.getName());
-                }else if (a2[2].matches("NormalUser")) {
+                }else if (a2[3].matches("NormalUser")) {
                     User user = new NormalUser(a2[0], a2[1],a2[2]);
                     users.add(user);
                     usernames.add(user.getName());
@@ -94,6 +94,7 @@ public class Database {
             System.err.println(e.toString());
         }
     }
+
     private void saveBooks() {
         String text1 = "";
         for(Book book: books){
@@ -109,7 +110,7 @@ public class Database {
         }
     }
     public Book parseBook(String s){
-        String[] a = s.split("<N>");
+        String[] a = s.split("<N/>");
         Book book = new Book();
         book.setName(a[0]);
         book.setAuthor(a[1]);
@@ -139,6 +140,38 @@ public class Database {
                 books.add(book);
                 booknames.add(book.getName());
             }
+        }
+    }
+    public ArrayList<Book> getAllBooks() {
+        return books;
+    }
+    public int getBook(String bookname) {
+        int i =-1;
+        for(Book book : books){
+                if(book.getName().matches(bookname)){
+                    i = books.indexOf(book);
+                    break;
+            }
+        }
+        return i;
+    }
+    public void deleteBook(int i) {
+        books.remove(i);
+        booknames.remove(i);
+    }
+    public Book getBook(int i  ) {
+        return books.get(i);
+    }
+    public void deleteAllData() {
+        if(usersfile.exists()){
+            try{
+                usersfile.delete();
+            }catch(Exception e){}
+        }
+        if(booksfile.exists()){
+            try{
+                booksfile.delete();
+            }catch(Exception e){}
         }
     }
 }

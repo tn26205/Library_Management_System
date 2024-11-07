@@ -1,4 +1,4 @@
-package org.example;
+package LibraryManagement;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package org.example;
+package LibraryManagement;
 import java.util.Scanner;
 public class Admin extends User {
 
@@ -18,7 +18,7 @@ public class Admin extends User {
         super(name, email, phonenumber);
         this.operations = new IOOperation[]{
                 new ViewBook(),
-                new AddBook(),// vì AddBook là lớp triển khia IOOperation
+                new AddBook(),// vì AddBook là lớp triển khai IOOperation
                 new DeleteBook(),
                 new Search(),
                 new DeleteAllData(),

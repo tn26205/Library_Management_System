@@ -1,4 +1,4 @@
-package org.example;
+package LibraryManagement;
 
 public class Book {
     private String name;
@@ -25,12 +25,12 @@ public class Book {
     @Override
     public String toString() {
         return "Book name :" + name +
-                "Book Author :" + author +
-                "Book publisher :" + publisher+
-                "Book Collection Adress :" + adress +
-                "Qty :" + String.valueOf(qty) +
-                "Price :" + String.valueOf(price)+
-                "Borrowing Copies :" + String.valueOf(brwcopies);
+                "\nBook Author :" + author +
+                "\nBook publisher :" + publisher+
+                "\nBook Collection Adress :" + adress +
+                "\nQty :" + String.valueOf(qty) +
+                "\nPrice :" + String.valueOf(price)+
+                "\nBorrowing Copies :" + String.valueOf(brwcopies);
     }
 
     public String getName() {
@@ -57,7 +57,12 @@ public class Book {
     public void setAdress(String adress) {
         this.adress = adress;
     }
-
+    public String getStatus() {
+        return status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
+    }
     public int getQty() {
         return qty;
     }
@@ -77,10 +82,10 @@ public class Book {
         this.brwcopies = brwcopies;
     }
     public String toString2() {
-         return name + "<N/>"+ author + "<N/n"+  publisher+ "<N/n>"+ adress +
-                "<N/n>"+ String.valueOf(qty) +
-                "<N/n>" + String.valueOf(price)+
-                "<N/n>" + String.valueOf(brwcopies);
+         return name + "<N/>"+ author + "<N/>"+  publisher+ "<N/>"+ adress +
+                "<N/>"+ String.valueOf(qty) +
+                "<N/>" + String.valueOf(price)+
+                "<N/>" + String.valueOf(brwcopies);
     }
 
 }
