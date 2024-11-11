@@ -46,6 +46,6 @@ public class NormalUser extends User {
     }
     @Override
     public String toString() {
-        return name+"<N/>"+email+"<N/>"+phoneNumber+"<N/>"+"NormalAdmin";
+        return name+"<N/>"+email+"<N/>"+phoneNumber+"<N/>"+"NormalUser";
     }
 }

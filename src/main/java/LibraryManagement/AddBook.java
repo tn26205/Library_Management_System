@@ -10,11 +10,11 @@ public class AddBook  implements IOOperation{
         System.out.println("Enter book name: ");
         String name = s.nextLine();
         if(database.getBook(name)>-1){
-            System.out.println("There is already a book in the database ");
+            System.out.println("There is already a book in the database" );
             user.menu(database, user);
         }
         else{
-            book.setName(s.nextLine());
+            book.setName(name);
             System.out.println("Enter book author: ");
             book.setAuthor(s.nextLine());
             System.out.println("Enter book publisher: ");
