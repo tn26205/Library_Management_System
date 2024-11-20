@@ -14,6 +14,7 @@ public class AddBook  implements IOOperation{
             user.menu(database, user);
         }
         else{
+            //Neu khong thi.
             book.setName(name);
             System.out.println("Enter book author: ");
             book.setAuthor(s.nextLine());
